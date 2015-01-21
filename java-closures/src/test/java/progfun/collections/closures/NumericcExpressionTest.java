@@ -3,7 +3,6 @@ package progfun.collections.closures;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-import progfun.collections.closures.expressions.Expression;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import static progfun.collections.closures.ElementMatcher.matchFirst;
 /**
  * Basic Unit Test for {@link ElementMatcher}
  */
-public class ElementMatcherTest {
+public class NumericcExpressionTest {
 
     private List<Integer> list = new ArrayList<>();
     final int refValue = 8;
@@ -70,6 +69,48 @@ public class ElementMatcherTest {
 
         //Collect all the values
         List<Integer> retrievedValues = matchAll(list, equals, 6);
+        System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
+    }
+
+    @Test
+    public void testNotEqualsExpression(){
+        System.out.println("\n[INFO]NotEquals Test Case");
+        printList();
+
+        Func<Integer, Boolean> notEquals = Expression.notEqual(refValue);
+        int retrievedValue = matchFirst(list, notEquals, 6);
+        System.out.println("Matched First Value : " + retrievedValue);
+
+        //Collect all the values
+        List<Integer> retrievedValues = matchAll(list, notEquals, 6);
+        System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
+    }
+
+    @Test
+    public void testGreaterOrEqualsThanExpression(){
+        System.out.println("\n[INFO]GreaterOrEquals Test Case");
+        printList();
+
+        Func<Integer, Boolean> greaterThanTen = Expression.greaterOrEquals(refValue);
+        int retrievedValue = matchFirst(list, greaterThanTen, 6);
+        System.out.println("Matched First Value : " + retrievedValue);
+
+        //Collect all the values
+        List<Integer> retrievedValues = matchAll(list, greaterThanTen, 6);
+        System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
+    }
+
+    @Test
+    public void testLessThanOrEqualsExpression(){
+        System.out.println("\n[INFO]LessOrEquals Test Case");
+        printList();
+
+        Func<Integer, Boolean> lessThanTen = Expression.lessOrEquals(refValue);
+        int retrievedValue = matchFirst(list, lessThanTen, 6);
+        System.out.println("Matched First Value : " + retrievedValue);
+
+        //Collect all the values
+        List<Integer> retrievedValues = matchAll(list, lessThanTen, 6);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 }
