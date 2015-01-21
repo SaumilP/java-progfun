@@ -41,7 +41,7 @@ public class ExpressionTest extends TestCase {
 
     public void testFuzzyPattern() throws Exception {
         System.out.println("\n[INFO]FuzzyPattern Test Case");
-        String likeString = "$";
+        String likeString = "\\w{6,}$";
 
         Func<String, Boolean> like = Expression.fuzzyPattern(likeString);
         List<String> retrievedValue = matchAll(stringList, like, likeString);
