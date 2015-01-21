@@ -8,7 +8,7 @@ import progfun.collections.closures.expressions.StringExpression;
 import java.util.Date;
 
 /**
- * Expression functions containing all Primitive Data Types
+ * Final Expression Class to consolidate functions for all Primitive Data Types
  */
 @SuppressWarnings("unchecked")
 public final class Expression {
