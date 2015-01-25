@@ -1,4 +1,4 @@
-Few Small 0Programmes
+Few Small Programmes
 ===================================
 Repository contains few small utility fun-programs.
 

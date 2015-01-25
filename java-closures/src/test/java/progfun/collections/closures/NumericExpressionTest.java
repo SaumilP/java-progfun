@@ -13,7 +13,7 @@ import static progfun.collections.closures.ElementMatcher.matchFirst;
 /**
  * Basic Unit Test for {@link ElementMatcher}
  */
-public class NumericcExpressionTest {
+public class NumericExpressionTest {
 
     private List<Integer> list = new ArrayList<>();
     final int refValue = 8;
@@ -36,11 +36,11 @@ public class NumericcExpressionTest {
         printList();
 
         Func<Integer, Boolean> greaterThanTen = Expression.greaterThan(refValue);
-        int retrievedValue = matchFirst(list, greaterThanTen, 6);
+        int retrievedValue = matchFirst(list, greaterThanTen);
         System.out.println("Matched First Value : " + retrievedValue);
 
         //Collect all the values
-        List<Integer> retrievedValues = matchAll(list, greaterThanTen, 6);
+        List<Integer> retrievedValues = matchAll(list, greaterThanTen);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 
@@ -50,11 +50,11 @@ public class NumericcExpressionTest {
         printList();
 
         Func<Integer, Boolean> lessThanTen = Expression.lessThan(refValue);
-        int retrievedValue = matchFirst(list, lessThanTen, 6);
+        int retrievedValue = matchFirst(list, lessThanTen);
         System.out.println("Matched First Value : " + retrievedValue);
 
         //Collect all the values
-        List<Integer> retrievedValues = matchAll(list, lessThanTen, 6);
+        List<Integer> retrievedValues = matchAll(list, lessThanTen);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 
@@ -64,11 +64,11 @@ public class NumericcExpressionTest {
         printList();
 
         Func<Integer, Boolean> equals = Expression.isEqual(refValue);
-        int retrievedValue = matchFirst(list, equals, 6);
+        int retrievedValue = matchFirst(list, equals);
         System.out.println("Matched First Value : " + retrievedValue);
 
         //Collect all the values
-        List<Integer> retrievedValues = matchAll(list, equals, 6);
+        List<Integer> retrievedValues = matchAll(list, equals);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 
@@ -78,11 +78,11 @@ public class NumericcExpressionTest {
         printList();
 
         Func<Integer, Boolean> notEquals = Expression.notEqual(refValue);
-        int retrievedValue = matchFirst(list, notEquals, 6);
+        int retrievedValue = matchFirst(list, notEquals);
         System.out.println("Matched First Value : " + retrievedValue);
 
         //Collect all the values
-        List<Integer> retrievedValues = matchAll(list, notEquals, 6);
+        List<Integer> retrievedValues = matchAll(list, notEquals);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 
@@ -92,11 +92,11 @@ public class NumericcExpressionTest {
         printList();
 
         Func<Integer, Boolean> greaterThanTen = Expression.greaterOrEquals(refValue);
-        int retrievedValue = matchFirst(list, greaterThanTen, 6);
+        int retrievedValue = matchFirst(list, greaterThanTen);
         System.out.println("Matched First Value : " + retrievedValue);
 
         //Collect all the values
-        List<Integer> retrievedValues = matchAll(list, greaterThanTen, 6);
+        List<Integer> retrievedValues = matchAll(list, greaterThanTen);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 
@@ -106,11 +106,11 @@ public class NumericcExpressionTest {
         printList();
 
         Func<Integer, Boolean> lessThanTen = Expression.lessOrEquals(refValue);
-        int retrievedValue = matchFirst(list, lessThanTen, 6);
+        int retrievedValue = matchFirst(list, lessThanTen);
         System.out.println("Matched First Value : " + retrievedValue);
 
         //Collect all the values
-        List<Integer> retrievedValues = matchAll(list, lessThanTen, 6);
+        List<Integer> retrievedValues = matchAll(list, lessThanTen);
         System.out.println("Matched All Values : " + StringUtils.join(retrievedValues, ","));
     }
 }

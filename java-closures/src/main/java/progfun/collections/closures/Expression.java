@@ -9,6 +9,8 @@ import java.util.Date;
 
 /**
  * Final Expression Class to consolidate functions for all Primitive Data Types
+ *
+ * @version 1.0
  */
 @SuppressWarnings("unchecked")
 public final class Expression {
@@ -133,5 +135,10 @@ public final class Expression {
         } else {
             return StringExpression.endsWith(refString);
         }
+    }
+
+    public static <T,O> Func<O, Boolean> has(final T matchPropertyValue ){
+        Validate.notNull( matchPropertyValue );
+
     }
 }
