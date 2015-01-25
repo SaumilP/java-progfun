@@ -47,10 +47,10 @@ public class ObjectExpressionTest {
     }
      @Test public void shouldMatchElementsWithJobType() throws Exception {
         print(persons);
-        Func<Person, Boolean> criteria = has(MaritalStatus.WIDOW);
-        List<Person> widowdPerson = matchAll(persons, criteria);
+        Func<Person, Boolean> criteria = has(JobType.DOCTOR);
+        List<Person> doctors = matchAll(persons, criteria);
 
-        System.out.println("\n[Result] Single Managers : " + StringUtils.join( widowdPerson, "\n" ) );
+        System.out.println("\n[Result] Doctors : " + StringUtils.join( doctors, "\n" ) );
     }
 
     @Test
