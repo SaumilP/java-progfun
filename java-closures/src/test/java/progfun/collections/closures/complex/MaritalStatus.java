@@ -1,7 +1,7 @@
 package progfun.collections.closures.complex;
 
 /**
- * Created by PATEL1 on 1/24/15.
+ * Marital Status related Enum for testing
  */
 public enum MaritalStatus {
     SINGLE, MARRIED, WIDOWD

@@ -1,6 +1,7 @@
 package progfun.collections.closures;
 
 import org.apache.commons.lang.Validate;
+import progfun.collections.closures.collection.ObjectExpression;
 import progfun.collections.closures.expressions.DateExpression;
 import progfun.collections.closures.expressions.NumericExpression;
 import progfun.collections.closures.expressions.StringExpression;
@@ -139,6 +140,10 @@ public final class Expression {
 
     public static <T,O> Func<O, Boolean> has(final T matchPropertyValue ){
         Validate.notNull( matchPropertyValue );
-
+        try {
+            return ObjectExpression.has(matchPropertyValue);
+        } catch( RuntimeException ex){
+            throw new IllegalArgumentException("Incorrect or Invalid Object Property provided for matching.");
+        }
     }
 }

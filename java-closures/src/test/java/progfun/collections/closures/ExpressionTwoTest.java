@@ -22,20 +22,47 @@ public class ExpressionTwoTest {
     @Before
     public void setUp() throws Exception {
         persons.add( new Person("John Doe", JobType.DOCTOR, MaritalStatus.MARRIED ));
-        persons.add( new Person("Martin Riggs", JobType.SUPER_COP, MaritalStatus.SINGLE ));
+        persons.add( new Person("Gregory House", JobType.DOCTOR, MaritalStatus.SINGLE));
+        persons.add( new Person("Victor Frankenstien", JobType.DOCTOR, MaritalStatus.WIDOWD ));
+
         persons.add( new Person("Jane Doe", JobType.MANAGER, MaritalStatus.MARRIED ));
-        persons.add( new Person("Janette Doe", JobType.ENGINEER, MaritalStatus.WIDOWD ));
-        persons.add( new Person("Jackie Chan", JobType.SUPER_COP, MaritalStatus.MARRIED ));
+        persons.add( new Person("Roselyn Black", JobType.MANAGER, MaritalStatus.SINGLE ));
+        persons.add( new Person("John Smit", JobType.MANAGER, MaritalStatus.SINGLE ));
+
         persons.add( new Person("Tommy lee-Jones", JobType.ENGINEER, MaritalStatus.SINGLE ));
+        persons.add( new Person("Janette Doe", JobType.ENGINEER, MaritalStatus.WIDOWD ));
+        persons.add( new Person("Jude Law", JobType.ENGINEER, MaritalStatus.SINGLE ));
+
+        persons.add( new Person("Martin Riggs", JobType.SUPER_COP, MaritalStatus.SINGLE ));
+        persons.add( new Person("Jackie Chan", JobType.SUPER_COP, MaritalStatus.MARRIED ));
+
         persons.add( new Person("Sting", JobType.MUSICIAN, MaritalStatus.SINGLE ));
         persons.add( new Person("Jamie Reidy", JobType.SALES_REPRESETNTIVE, MaritalStatus.MARRIED ));
+    }
 
-        System.out.println( StringUtils.join(persons, "\n") );
+    private void print(List<Person> persons){
+        System.out.print("************ [INPUT] *************\n");
+        System.out.println(StringUtils.join(persons, "\n"));
+        System.out.print("*********************************");
+    }
+     @Test public void shouldMatchElementsWithJobType() throws Exception {
+        print(persons);
+        Func<Person, Boolean> criteria = has(MaritalStatus.WIDOWD);
+        List<Person> widowdPerson = matchAll(persons, criteria);
+
+        System.out.println("\n[Result] Single Managers : " + StringUtils.join( widowdPerson, "\n" ) );
     }
 
     @Test
     public void shouldReturnElements() throws Exception {
-        Func<Person, Boolean> single = has(MaritalStatus.SINGLE);
-        List<Person> singlePersons = matchAll(persons, single);
+        print(persons);
+        Func<Person, Boolean> criteria = has(MaritalStatus.SINGLE);
+        List<Person> singlePersons = matchAll(persons, criteria);
+
+        System.out.println("\n[Result] Bachelors : " + StringUtils.join( singlePersons, "\n" ) );
+
+        criteria = has(JobType.ENGINEER);
+        List<Person> singleEngineers = matchAll(singlePersons, criteria);
+        System.out.println("\n[Result] Bachelor Engineers: " + StringUtils.join( singleEngineers, "\n" ) );
     }
 }
