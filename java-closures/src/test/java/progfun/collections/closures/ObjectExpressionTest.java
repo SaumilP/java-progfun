@@ -16,21 +16,21 @@ import static progfun.collections.closures.Expression.has;
 /**
  * Complex object Unit Test
  */
-public class ExpressionTwoTest {
+public class ObjectExpressionTest {
     private List<Person> persons = new ArrayList<>();
 
     @Before
     public void setUp() throws Exception {
         persons.add( new Person("John Doe", JobType.DOCTOR, MaritalStatus.MARRIED ));
         persons.add( new Person("Gregory House", JobType.DOCTOR, MaritalStatus.SINGLE));
-        persons.add( new Person("Victor Frankenstien", JobType.DOCTOR, MaritalStatus.WIDOWD ));
+        persons.add( new Person("Victor Frankenstien", JobType.DOCTOR, MaritalStatus.WIDOW));
 
         persons.add( new Person("Jane Doe", JobType.MANAGER, MaritalStatus.MARRIED ));
         persons.add( new Person("Roselyn Black", JobType.MANAGER, MaritalStatus.SINGLE ));
         persons.add( new Person("John Smit", JobType.MANAGER, MaritalStatus.SINGLE ));
 
         persons.add( new Person("Tommy lee-Jones", JobType.ENGINEER, MaritalStatus.SINGLE ));
-        persons.add( new Person("Janette Doe", JobType.ENGINEER, MaritalStatus.WIDOWD ));
+        persons.add( new Person("Janette Doe", JobType.ENGINEER, MaritalStatus.WIDOW));
         persons.add( new Person("Jude Law", JobType.ENGINEER, MaritalStatus.SINGLE ));
 
         persons.add( new Person("Martin Riggs", JobType.SUPER_COP, MaritalStatus.SINGLE ));
@@ -47,7 +47,7 @@ public class ExpressionTwoTest {
     }
      @Test public void shouldMatchElementsWithJobType() throws Exception {
         print(persons);
-        Func<Person, Boolean> criteria = has(MaritalStatus.WIDOWD);
+        Func<Person, Boolean> criteria = has(MaritalStatus.WIDOW);
         List<Person> widowdPerson = matchAll(persons, criteria);
 
         System.out.println("\n[Result] Single Managers : " + StringUtils.join( widowdPerson, "\n" ) );

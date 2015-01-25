@@ -139,7 +139,7 @@ public final class Expression {
     }
 
     public static <T,O> Func<O, Boolean> has(final T matchPropertyValue ){
-        Validate.notNull( matchPropertyValue );
+        Validate.notNull( matchPropertyValue, "Supplied Value cannot be null" );
         try {
             return ObjectExpression.has(matchPropertyValue);
         } catch( RuntimeException ex){
