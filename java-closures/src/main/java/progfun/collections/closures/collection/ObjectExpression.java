@@ -4,6 +4,8 @@ import org.apache.commons.lang.StringUtils;
 import progfun.collections.closures.Func;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Custom Object related Matching Expressions
@@ -22,6 +24,19 @@ public class ObjectExpression {
                    return false;
                }
            }
+        };
+    }
+
+    public static <T,O> Func<O,Boolean> contains(final String methodName, final T matchPropValue){
+        return new Func<O,Boolean>(){
+            @Override public Boolean evaluate(O refObj) {
+                try{
+                    Object foundObj = getFieldValueByMethod( refObj, methodName );
+                    return foundObj != null && matchPropValue != null && foundObj.equals(matchPropValue);
+                } catch( RuntimeException ex){
+                    return false;
+                }
+            }
         };
     }
 
@@ -44,11 +59,26 @@ public class ObjectExpression {
             try{
                 Field field = obj.getClass().getDeclaredField( fieldName );
                 field.setAccessible( true );
-
-                //Class<?> fieldType = field.getType();
                 fieldValue = field.get( obj );
             } catch( NoSuchFieldException | IllegalAccessException | RuntimeException ex ){
                 throw new RuntimeException( String.format("No such field found while attempting to extract Field value[%s] of class type - %s", fieldName, obj.getClass()) );
+            }
+        }
+        return fieldValue;
+    }
+
+    /** Method returns Property Value based on provided reference matching Property */
+    private static <T> Object getFieldValueByMethod(T destObj, String methodName) {
+        Object fieldValue = null;
+        if ( StringUtils.isNotEmpty(methodName) ){
+            try{
+                Method method = destObj.getClass().getDeclaredMethod(methodName);
+                Class clazz = Class.forName( destObj.getClass().getCanonicalName() );
+                fieldValue = method.invoke(clazz, null);
+            } catch (RuntimeException | NoSuchMethodException | InvocationTargetException | ClassNotFoundException | IllegalAccessException e) {
+                throw new RuntimeException( String.format("No such field found while attempting to extract Field value[%s] of class type - %s",
+                                                          methodName,
+                                                          destObj.getClass()) );
             }
         }
         return fieldValue;

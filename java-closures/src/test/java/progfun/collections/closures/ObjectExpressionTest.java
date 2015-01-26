@@ -12,6 +12,7 @@ import java.util.List;
 
 import static progfun.collections.closures.ElementMatcher.matchAll;
 import static progfun.collections.closures.Expression.has;
+import static progfun.collections.closures.collection.ObjectExpression.contains;
 
 /**
  * Complex object Unit Test
@@ -64,5 +65,14 @@ public class ObjectExpressionTest {
         criteria = has(JobType.ENGINEER);
         List<Person> singleEngineers = matchAll(singlePersons, criteria);
         System.out.println("\n[Result] Bachelor Engineers: " + StringUtils.join( singleEngineers, "\n" ) );
+    }
+
+    @Test public void mustReturnElements() throws Exception{
+        print(persons);
+
+        Func<Person, Boolean> criteria = contains("getType", JobType.ENGINEER);
+        List<Person> singlePersons = matchAll(persons, criteria);
+
+        System.out.println("\n[Result] Bachelors : " + StringUtils.join( singlePersons, "\n" ) );
     }
 }
