@@ -73,9 +73,8 @@ public class ObjectExpression {
         if ( StringUtils.isNotEmpty(methodName) ){
             try{
                 Method method = destObj.getClass().getDeclaredMethod(methodName);
-                Class clazz = Class.forName( destObj.getClass().getCanonicalName() );
-                fieldValue = method.invoke(clazz, null);
-            } catch (RuntimeException | NoSuchMethodException | InvocationTargetException | ClassNotFoundException | IllegalAccessException e) {
+                fieldValue = method.invoke( destObj );
+            } catch (RuntimeException | NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                 throw new RuntimeException( String.format("No such field found while attempting to extract Field value[%s] of class type - %s",
                                                           methodName,
                                                           destObj.getClass()) );

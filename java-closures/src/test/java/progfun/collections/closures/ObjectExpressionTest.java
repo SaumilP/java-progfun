@@ -47,7 +47,6 @@ public class ObjectExpressionTest {
         System.out.print("*********************************");
     }
      @Test public void shouldMatchElementsWithJobType() throws Exception {
-        print(persons);
         Func<Person, Boolean> criteria = has(JobType.DOCTOR);
         List<Person> doctors = matchAll(persons, criteria);
 
@@ -56,7 +55,6 @@ public class ObjectExpressionTest {
 
     @Test
     public void shouldReturnElements() throws Exception {
-        print(persons);
         Func<Person, Boolean> criteria = has(MaritalStatus.SINGLE);
         List<Person> singlePersons = matchAll(persons, criteria);
 
@@ -73,6 +71,6 @@ public class ObjectExpressionTest {
         Func<Person, Boolean> criteria = contains("getType", JobType.ENGINEER);
         List<Person> singlePersons = matchAll(persons, criteria);
 
-        System.out.println("\n[Result] Bachelors : " + StringUtils.join( singlePersons, "\n" ) );
+        System.out.println("\n[Result] Bachelors : \n" + StringUtils.join( singlePersons, "\n" ) );
     }
 }
