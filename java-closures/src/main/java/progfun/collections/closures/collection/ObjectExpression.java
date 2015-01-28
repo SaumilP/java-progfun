@@ -13,7 +13,9 @@ import java.lang.reflect.Method;
 @SuppressWarnings("unchecked")
 public class ObjectExpression {
 
-    public static <T,O> Func<O,Boolean> has(final T matchPropValue ){
+    /** Method uses reflection and matching object to identify property and
+     * attempts to match property values */
+    public static <T,O> Func<O,Boolean> contains(final T matchPropValue ){
         return new Func<O,Boolean>(){
            @Override public Boolean evaluate(O refObj) {
                try {
@@ -27,6 +29,7 @@ public class ObjectExpression {
         };
     }
 
+    /** Instead of using reflection, method accepts method-name */
     public static <T,O> Func<O,Boolean> contains(final String methodName, final T matchPropValue){
         return new Func<O,Boolean>(){
             @Override public Boolean evaluate(O refObj) {
