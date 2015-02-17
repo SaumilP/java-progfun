@@ -38,6 +38,7 @@
     <!-- Small Programs -->
     <modules>
         <module>java-closures</module>
+        <module>java-closures-two</module>
     </modules>
 
     <!-- Dependencies -->
