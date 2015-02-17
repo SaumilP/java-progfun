@@ -138,10 +138,10 @@ public final class Expression {
         }
     }
 
-    public static <T,O> Func<O, Boolean> has(final T matchPropertyValue ){
+    public static <T,O> Func<O, Boolean> contains(final T matchPropertyValue ){
         Validate.notNull( matchPropertyValue, "Supplied Value cannot be null" );
         try {
-            return ObjectExpression.has(matchPropertyValue);
+            return ObjectExpression.contains(matchPropertyValue);
         } catch( RuntimeException ex){
             throw new IllegalArgumentException("Incorrect or Invalid Object Property provided for matching.");
         }

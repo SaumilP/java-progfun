@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static progfun.collections.closures.ElementMatcher.matchAll;
-import static progfun.collections.closures.Expression.has;
 import static progfun.collections.closures.collection.ObjectExpression.contains;
 
 /**
@@ -41,38 +40,41 @@ public class ObjectExpressionTest {
         persons.add( new Person("Jamie Reidy", JobType.SALES_REPRESETNTIVE, MaritalStatus.MARRIED ));
     }
 
+    /** Internal Print method */
     private void print(List<Person> persons){
         System.out.print("************ [INPUT] *************\n");
         System.out.println(StringUtils.join(persons, "\n"));
         System.out.print("*********************************");
     }
+
+    /** Test case for regular collection filter */
      @Test public void shouldMatchElementsWithJobType() throws Exception {
-        print(persons);
-        Func<Person, Boolean> criteria = has(JobType.DOCTOR);
+        Func<Person, Boolean> criteria = contains(JobType.DOCTOR);
         List<Person> doctors = matchAll(persons, criteria);
 
         System.out.println("\n[Result] Doctors : " + StringUtils.join( doctors, "\n" ) );
     }
 
+    /** Test case for filtering custom object collection */
     @Test
     public void shouldReturnElements() throws Exception {
-        print(persons);
-        Func<Person, Boolean> criteria = has(MaritalStatus.SINGLE);
+        Func<Person, Boolean> criteria = contains(MaritalStatus.SINGLE);
         List<Person> singlePersons = matchAll(persons, criteria);
 
         System.out.println("\n[Result] Bachelors : " + StringUtils.join( singlePersons, "\n" ) );
 
-        criteria = has(JobType.ENGINEER);
+        criteria = contains(JobType.ENGINEER);
         List<Person> singleEngineers = matchAll(singlePersons, criteria);
         System.out.println("\n[Result] Bachelor Engineers: " + StringUtils.join( singleEngineers, "\n" ) );
     }
 
+    /** Test case demonstrates of using method name instead of using matching property value criteria */
     @Test public void mustReturnElements() throws Exception{
         print(persons);
 
         Func<Person, Boolean> criteria = contains("getType", JobType.ENGINEER);
         List<Person> singlePersons = matchAll(persons, criteria);
 
-        System.out.println("\n[Result] Bachelors : " + StringUtils.join( singlePersons, "\n" ) );
+        System.out.println("\n[Result] Bachelors : \n" + StringUtils.join( singlePersons, "\n" ) );
     }
 }
